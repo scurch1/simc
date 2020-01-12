@@ -68,28 +68,28 @@ actions.aoe+=/blackout_kick,target_if=min:debuff.mark_of_the_crane.remains,if=co
 
 # Cooldowns
 actions.cd=invoke_xuen_the_white_tiger
-actions.cd+=/guardian_of_azeroth
+actions.cd+=/guardian_of_azeroth,if=target.time_to_die>185|(!equipped.dribbling_inkpod|equipped.cyclotronic_blast|target.health.pct<30)&cooldown.touch_of_death.remains<=14|equipped.dribbling_inkpod&target.time_to_pct_30.remains<20|target.time_to_die<=30
 actions.cd+=/worldvein_resonance
 actions.cd+=/blood_fury
-actions.cd+=/berserking
 # Use Arcane Torrent if you are missing at least 1 Chi and won't cap energy within 0.5 seconds
 actions.cd+=/arcane_torrent,if=chi.max-chi>=1&energy.time_to_max>=0.5
 actions.cd+=/lights_judgment
-actions.cd+=/fireblood
-actions.cd+=/ancestral_call
 actions.cd+=/call_action_list,name=tod
 actions.cd+=/storm_earth_and_fire,if=cooldown.storm_earth_and_fire.charges=2|(cooldown.fists_of_fury.remains<=9&chi>=3&cooldown.whirling_dragon_punch.remains<=14&cooldown.touch_of_death.remains>=90)|target.time_to_die<=15|dot.touch_of_death.remains
-actions.cd+=/concentrated_flame,if=dot.concentrated_flame_burn.remains<=2
-actions.cd+=/blood_of_the_enemy
+actions.cd+=/blood_of_the_enemy,if=dot.touch_of_death.remains|target.time_to_die<12
+actions.cd+=/use_item,name=ashvanes_razor_coral,if=((equipped.cyclotronic_blast&cooldown.cyclotronic_blast.remains>=20)|!equipped.cyclotronic_blast)&(debuff.razor_coral_debuff.down|(!equipped.dribbling_inkpod|target.time_to_pct_30.remains<8)&buff.storm_earth_and_fire.remains>13|target.time_to_die<21)
+actions.cd+=/use_items,if=(equipped.cyclotronic_blast&cooldown.cyclotronic_blast.remains<=20)|!equipped.cyclotronic_blast
+actions.cd+=/fireblood,if=dot.touch_of_death.remains|target.time_to_die<9
+actions.cd+=/ancestral_call,if=dot.touch_of_death.remains|target.time_to_die<16
+actions.cd+=/concentrated_flame,if=!dot.concentrated_flame_burn.remains&(cooldown.concentrated_flame.remains<=cooldown.touch_of_death.remains&(talent.whirling_dragon_punch.enabled&cooldown.whirling_dragon_punch.remains)&cooldown.rising_sun_kick.remains&cooldown.fists_of_fury.remains&buff.storm_earth_and_fire.down|dot.touch_of_death.remains)|target.time_to_die<8
+actions.cd+=/berserking,if=target.time_to_die>183|dot.touch_of_death.remains|target.time_to_die<13
+actions.cd+=/use_item,name=pocketsized_computation_device,if=dot.touch_of_death.remains
 actions.cd+=/the_unbound_force
 actions.cd+=/purifying_blast
 actions.cd+=/focused_azerite_beam
-actions.cd+=/use_item,name=pocketsized_computation_device,if=dot.touch_of_death.remains
-actions.cd+=/use_item,name=ashvanes_razor_coral,if=((equipped.cyclotronic_blast&cooldown.cyclotronic_blast.remains>=20)|!equipped.cyclotronic_blast)&(debuff.razor_coral_debuff.down|(!equipped.dribbling_inkpod|target.time_to_pct_30.remains<8)&buff.storm_earth_and_fire.remains>13|target.time_to_die<21)
 actions.cd+=/serenity,if=cooldown.rising_sun_kick.remains<=2|target.time_to_die<=12
 actions.cd+=/memory_of_lucid_dreams,if=energy<40&buff.storm_earth_and_fire.up
 actions.cd+=/ripple_in_space
-actions.cd+=/use_items,if=(equipped.cyclotronic_blast&cooldown.cyclotronic_blast.remains<=20)|!equipped.cyclotronic_blast
 
 actions.rskless=whirling_dragon_punch
 actions.rskless+=/fists_of_fury
